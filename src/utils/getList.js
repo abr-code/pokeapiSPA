@@ -4,15 +4,18 @@
  * @param {string} link enlace de consulta
  *
  */
-async function getList(link) {
-  fetch(link)
-    .then((res) => res.json())
-    .then(async (res) => {
-      let pokeLista = await obtenerPokemonData(res.results);
-      presentarLista(pokeLista);
-      page.next = res.next;
-      page.previous = res.previous;
-    });
-}
+let getList = async (link) => {
+  let list = await fetch(link);
+  list = await list.json();
+
+  let pokemonData = list.results.map(async (pokemon) => {
+    let pokemonInfo = await fetch(pokemon.url);
+    pokemonInfo = await pokemonInfo.json();
+    return pokemonInfo;
+  });
+  let result = await Promise.all(pokemonData);
+
+  return result;
+};
 
 export default getList;

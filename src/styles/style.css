@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+/* Conetenedor grid */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.card {
+  background: linear-gradient(rgb(0, 200, 255), white 100px);
+  border-radius: 10px;
+}
+.card:hover {
+  cursor: pointer;
+}
+/* Imagen Pokemon */
+.img:hover {
+  scale: 1.1;
+}
+.img-div {
+  display: flex;
+  justify-content: center;
+}
+
+/* Informacion de pokemon */
+.info {
+  text-align: center;
+  font-family: Verdana;
+}
+
+.info div {
+  border-top: 2px solid black;
+}
+/* Contenedor del titulo y botones */
+.header-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: red;
+  border-bottom: 10px solid black;
+  justify-items: center;
+  align-items: center;
+}
+
+/* Contenedor de botones */
+
+#btn-div button {
+  padding: 10px;
+  margin: 5px;
+  background-color: gray;
+  color: white;
+}
