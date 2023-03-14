@@ -10,3 +10,4 @@ btnNext(list.next); */
 import router from "./routes/routes.js";
 
 window.addEventListener("load", router);
+window.addEventListener("hashchange", router);
