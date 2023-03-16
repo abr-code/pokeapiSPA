@@ -10,12 +10,12 @@ let routes = {
 
 let router = async () => {
   // Obteniendo elementos para dibujar
+
   let header = document.getElementById("header") || null;
   let content = document.getElementById("content") || null;
 
   let hash = getHash();
-  header.innerHTML = Header();
-
+  if (!header.innerHTML) header.innerHTML = await Header();
   content.innerHTML = await routes[hash]();
 };
 

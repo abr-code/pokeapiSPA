@@ -7,6 +7,7 @@ const List = async () => {
    */
   const PokemonInstance = await PokemonInfo.getInstance();
   let pokemonList = PokemonInstance.getList();
+
   /*   const pokemonList = [
     {
       name: 1,

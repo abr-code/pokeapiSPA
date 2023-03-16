@@ -1,26 +1,34 @@
 const API = "https://pokeapi.co/api/v2/pokemon/";
-
 let PokemonInfo = (function () {
   let instance;
-  let pokemonData;
+  let pokemonData, next, previous;
   function SingletonClass() {}
-  SingletonClass.prototype.next = function () {};
-  SingletonClass.prototype.previous = function () {};
+  SingletonClass.prototype.nextPage = async function () {
+    if (!next) return;
+    pokemonData = await fetchList(next);
+    console.log(pokemonData, next);
+    return pokemonData;
+  };
+  SingletonClass.prototype.previousPage = async function () {
+    if (!previous) return;
+    pokemonData = await fetchList(previous);
+    return pokemonData;
+  };
   SingletonClass.prototype.getList = function () {
     return pokemonData;
   };
   SingletonClass.prototype.getPokemon = function (id) {
+    if (!pokemonData) return;
     return pokemonData.filter((pokemon) => {
       return pokemon.id == id;
     })[0];
   };
 
-  async function init() {
-    pokemonData = await fetchList();
-  }
   let fetchList = async (link) => {
     let list = await fetch(link);
     list = await list.json();
+    next = list.next;
+    previous = list.previous;
 
     let pokemonList = list.results.map(async (pokemon) => {
       let pokemonInfo = await fetch(pokemon.url);
@@ -35,8 +43,8 @@ let PokemonInfo = (function () {
   return {
     getInstance: async function () {
       if (!instance) {
-        console.log("hola");
-        if (!pokemonData) pokemonData = await fetchList(API);
+        console.log("holo");
+        pokemonData = await fetchList(API);
         instance = new SingletonClass();
         delete instance.constructor;
       }
