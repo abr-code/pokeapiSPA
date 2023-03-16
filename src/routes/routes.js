@@ -1,6 +1,7 @@
 import Header from "../template/Header.js";
 import List from "../pages/List.js";
 import Info from "../pages/info.js";
+import Error404 from "../pages/Error404.js";
 import getHash from "../utils/getHash.js";
 // En este archivo se decide que pagina dibujar en basae al enlace.
 let routes = {
@@ -16,7 +17,9 @@ let router = async () => {
 
   let hash = getHash();
   if (!header.innerHTML) header.innerHTML = await Header();
-  content.innerHTML = await routes[hash]();
+  let page = routes[hash] || Error404;
+  console.log(page);
+  content.innerHTML = await page();
 };
 
 export default router;
