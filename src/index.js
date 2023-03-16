@@ -9,6 +9,8 @@ btnNext(list.next); */
 
 import router from "./routes/routes.js";
 import PokemonInfo from "./utils/Pokemoninfo.js";
+import getHash from "./utils/getHash.js";
+
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);
 
@@ -38,7 +40,6 @@ let btnNext, btnPrevious;
 async function btnListeners() {
   btnNext = document.getElementById("next") || null;
   btnPrevious = document.getElementById("previous") || null;
-  console.log(btnNext, btnPrevious);
   const PokeInstance = await PokemonInfo.getInstance();
 
   btnNext.addEventListener("click", async () => {
@@ -49,5 +50,15 @@ async function btnListeners() {
   btnPrevious.addEventListener("click", async () => {
     await PokeInstance.previousPage();
     router();
+  });
+
+  window.addEventListener("hashchange", () => {
+    if (getHash() != "/") {
+      btnNext.disabled = true;
+      btnPrevious.disabled = true;
+      return;
+    }
+    btnNext.disabled = false;
+    btnPrevious.disabled = false;
   });
 }

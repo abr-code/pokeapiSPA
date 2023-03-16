@@ -6,7 +6,6 @@ let PokemonInfo = (function () {
   SingletonClass.prototype.nextPage = async function () {
     if (!next) return;
     pokemonData = await fetchList(next);
-    console.log(pokemonData, next);
     return pokemonData;
   };
   SingletonClass.prototype.previousPage = async function () {
