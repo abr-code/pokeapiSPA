@@ -18,7 +18,6 @@ let router = async () => {
   let hash = getHash();
   if (!header.innerHTML) header.innerHTML = await Header();
   let page = routes[hash] || Error404;
-  console.log(page);
   content.innerHTML = await page();
 };
 

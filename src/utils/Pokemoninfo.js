@@ -41,7 +41,10 @@ let PokemonInfo = (function () {
 
   return {
     getInstance: async function () {
+      let fetched = false;
       if (!instance) {
+        if (fetched) return;
+        fetched = true;
         console.log("holo");
         pokemonData = await fetchList(API);
         instance = new SingletonClass();
