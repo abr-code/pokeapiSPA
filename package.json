@@ -1,0 +1,26 @@
+{
+  "name": "pokeapi",
+  "version": "1.0.0",
+  "description": "Presenta una lista de pokemons",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Abraham Ortega",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "pokeapi"
+  },
+  "devDependencies": {
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-minimizer-webpack-plugin": "^5.0.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "terser-webpack-plugin": "^5.3.7",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
