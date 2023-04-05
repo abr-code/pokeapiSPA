@@ -1,29 +1,22 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "dist"),
     filename: "main.js",
-  },
-  resolve: {
-    extensions: [".js"],
+    path: path.resolve(__dirname, "dist"),
   },
   mode: "production",
   module: {
     rules: [
       {
-        test: /.html/,
-        use: "html-loader",
-      },
-      {
-        test: /.css/,
-        use: ["css-loader,style-loader"],
+        test: /\.css$/i,
+        use: ["css-loader"],
       },
       {
         test: /.js/,
@@ -34,11 +27,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      inject: true,
       template: "./public/index.html",
-      filename: "index.html",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
     }),
-
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
@@ -51,6 +46,6 @@ module.exports = {
   ],
   optimization: {
     minimize: true,
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
 };
