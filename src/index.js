@@ -5,6 +5,7 @@ import getHash from "./utils/getHash.js";
 async function main() {
   let instance = await PokemonInfo.getInstance();
   await router();
+  //return;
   window.addEventListener("hashchange", router);
 
   let btnNext = document.getElementById("next") || null;
