@@ -5,7 +5,6 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Pokemon;
   box-sizing: border-box;
 }
 h1 {
@@ -104,6 +103,9 @@ h1 {
 }
 .type.dark {
   background-color: #705848;
+}
+.type.ghost {
+  background-color: #705898;
 }
 
 /* Informacion de pokemon */
