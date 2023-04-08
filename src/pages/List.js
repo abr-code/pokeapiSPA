@@ -49,7 +49,7 @@ const List = async () => {
     <div class="info">
         <div>Nombre: ${pokemon.name}</div>
         <div class="type ${pokemon.types[0].type.name} ">tipo: ${pokemon.types[0].type.name}</div>
-        <div>id: #${pokemon.id}</div>
+        <div>Id: #${pokemon.id}</div>
     </div>
     </a>
     </div>
